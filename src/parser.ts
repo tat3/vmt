@@ -74,7 +74,7 @@ export class Parser {
 
     const cmdType = this.commandType()
     if (cmdType === ARITHMETIC) {
-      return cmdType
+      return tokens[0]
     }
 
     if(tokens.length < 2) {
