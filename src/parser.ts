@@ -89,8 +89,6 @@ export class Parser {
     }
     const tokens = this.current.split(' ')
 
-    const cmdType = this.commandType()
-
     if(tokens.length < 3) {
       throw new Error(`command '${this.current}' has no second arguments`)
     }
