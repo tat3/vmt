@@ -32,6 +32,89 @@ describe('tokenizer test', () => {
     M=M+1`)
   })
 
+  it('generate push direct segemnt assembler code', () => {
+    expect(cc.compilePush('pointer', 1)).to.equal(`    @1
+    D=A
+    @3
+    A=D+A
+    D=M
+    @SP
+    A=M
+    M=D
+    @SP
+    M=M+1`)
+
+    expect(cc.compilePush('temp', 2)).to.equal(`    @2
+    D=A
+    @5
+    A=D+A
+    D=M
+    @SP
+    A=M
+    M=D
+    @SP
+    M=M+1`)
+  })
+
+  it('generate push indirect segemnt assembler code', () => {
+    expect(cc.compilePush('argument', 1)).to.equal(`    @1
+    D=A
+    @ARG
+    A=D+M
+    D=M
+    @SP
+    A=M
+    M=D
+    @SP
+    M=M+1`)
+
+    expect(cc.compilePush('local', 2)).to.equal(`    @2
+    D=A
+    @LCL
+    A=D+M
+    D=M
+    @SP
+    A=M
+    M=D
+    @SP
+    M=M+1`)
+
+    expect(cc.compilePush('this', 1)).to.equal(`    @1
+    D=A
+    @THIS
+    A=D+M
+    D=M
+    @SP
+    A=M
+    M=D
+    @SP
+    M=M+1`)
+
+    expect(cc.compilePush('that', 1)).to.equal(`    @1
+    D=A
+    @THAT
+    A=D+M
+    D=M
+    @SP
+    A=M
+    M=D
+    @SP
+    M=M+1`)
+  })
+
+  it('generate push static segemnt assembler code', () => {
+    expect(() => cc.compilePush('static', 1)).to.throw('functionName is not set')
+
+    cc.setFunctionName('hoge')
+    expect(cc.compilePush('static', 1)).to.equal(`    @hoge.1
+    D=M
+    @SP
+    A=M
+    M=D
+    @SP
+    M=M+1`)
+  })
+
   it('generate push from D register assembler code', () => {
     expect(cc.compilePushFromDRegister()).to.equal(`    @SP
     A=M
