@@ -1,5 +1,4 @@
 export class PushCompiler {
-  jumpId = 0
   functionName: string | null = null
 
   compile = (segment: string, index: number) => {
@@ -33,10 +32,7 @@ export class PushCompiler {
     }
     const base = segmentMap[segment]
 
-    return `    @${index}
-    D=A
-    @${base}
-    A=D+A
+    return `    @${base + index}
     D=M`
   }
 

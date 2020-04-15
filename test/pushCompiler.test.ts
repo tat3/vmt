@@ -33,10 +33,7 @@ describe('push operation compiler test', () => {
   })
 
   it('generate push direct segemnt assembler code', () => {
-    expect(pc.compile('pointer', 1)).to.equal(`    @1
-    D=A
-    @3
-    A=D+A
+    expect(pc.compile('pointer', 1)).to.equal(`    @4
     D=M
     @SP
     A=M
@@ -44,10 +41,7 @@ describe('push operation compiler test', () => {
     @SP
     M=M+1`)
 
-    expect(pc.compile('temp', 2)).to.equal(`    @2
-    D=A
-    @5
-    A=D+A
+    expect(pc.compile('temp', 2)).to.equal(`    @7
     D=M
     @SP
     A=M
