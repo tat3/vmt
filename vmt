@@ -1,0 +1,9 @@
+if [ $# -ne 1 ]; then
+  cat << EOS
+vmt: invalid number of arguments
+Usage: ./vmt [VM_PATH]
+EOS
+  exit 1
+fi
+
+node build/src/index.js $1

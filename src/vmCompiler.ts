@@ -4,11 +4,14 @@ import { PushCompiler } from "./pushCompiler"
 import { PopCompiler } from "./popCompiler"
 
 export class VMCompiler {
-  compile = (script: string) => {
+  compile = (script: string, functionName: string) => {
     const parser = new Parser(script)
     const arithmeticCompiler = new ArithmeticCompiler()
     const pushCompiler = new PushCompiler()
     const popCompiler = new PopCompiler()
+
+    pushCompiler.setFunctionName(functionName)
+    popCompiler.setFunctionName(functionName)
 
     let asm = `    @256
     D=A

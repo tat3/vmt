@@ -17,7 +17,7 @@ describe('vm script compiler test', () => {
 
   it('generate assembly from empty vm script', () => {
     const script = ``
-    const asm = vmc.compile(script)
+    const asm = vmc.compile(script, 'func')
     expect(asm).to.equal(`    @256
     D=A
     @SP
@@ -27,12 +27,12 @@ describe('vm script compiler test', () => {
   it('generate assembly from sample vm scripts', () => {
     const simpleAddVm = fs.readFileSync('test/data/SimpleAdd/SimpleAdd.vm', { encoding: 'utf8' })
     const simpleAddAsm = fs.readFileSync('test/data/SimpleAdd/SimpleAdd.asm', { encoding: 'utf8' })
-    const simpleAddRes = vmc.compile(simpleAddVm)
+    const simpleAddRes = vmc.compile(simpleAddVm, 'func')
     expect(simpleAddRes).to.equal(simpleAddAsm)
 
     const stackTestVm = fs.readFileSync('test/data/StackTest/StackTest.vm', { encoding: 'utf8' })
     const stackTestAsm = fs.readFileSync('test/data/StackTest/StackTest.asm', { encoding: 'utf8' })
-    const stackTestRes = vmc.compile(stackTestVm)
+    const stackTestRes = vmc.compile(stackTestVm, 'func')
     expect(stackTestRes).to.equal(stackTestAsm)
   })
 })
