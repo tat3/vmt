@@ -59,15 +59,18 @@ describe('arithmetic operation compiler test', () => {
     D=M-D
     @EQ_0
     D;JEQ
-    D=0
+    @SP
+    D=M
+    A=D-1
+    M=0
     @EQ_END_0
     0;JMP
 (EQ_0)
-    D=-1
-(EQ_END_0)
     @SP
-    A=M
-    M=D`)
+    D=M
+    A=D-1
+    M=-1
+(EQ_END_0)`)
 
     expect(ac.compile('gt')).to.equal(`    @SP
     M=M-1
@@ -77,15 +80,18 @@ describe('arithmetic operation compiler test', () => {
     D=M-D
     @GT_1
     D;JGT
-    D=0
+    @SP
+    D=M
+    A=D-1
+    M=0
     @GT_END_1
     0;JMP
 (GT_1)
-    D=-1
-(GT_END_1)
     @SP
-    A=M
-    M=D`)
+    D=M
+    A=D-1
+    M=-1
+(GT_END_1)`)
 
     expect(ac.compile('lt')).to.equal(`    @SP
     M=M-1
@@ -95,15 +101,18 @@ describe('arithmetic operation compiler test', () => {
     D=M-D
     @LT_2
     D;JLT
-    D=0
+    @SP
+    D=M
+    A=D-1
+    M=0
     @LT_END_2
     0;JMP
 (LT_2)
-    D=-1
-(LT_END_2)
     @SP
-    A=M
-    M=D`)
+    D=M
+    A=D-1
+    M=-1
+(LT_END_2)`)
 
     expect(() => ac.compile('aad')).to.throw('invalid operator \'aad\'')
   })

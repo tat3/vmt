@@ -63,15 +63,18 @@ export class ArithmeticCompiler {
     D=M-D
     @${op}_${this.jumpId}
     D;${jumpCmd}
-    D=0
+    @SP
+    D=M
+    A=D-1
+    M=0
     @${op}_END_${this.jumpId}
     0;JMP
 (${op}_${this.jumpId})
-    D=-1
-(${op}_END_${this.jumpId})
     @SP
-    A=M
-    M=D`
+    D=M
+    A=D-1
+    M=-1
+(${op}_END_${this.jumpId})`
     this.jumpId++
     return asm
   }
