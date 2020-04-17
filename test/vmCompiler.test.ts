@@ -25,14 +25,16 @@ describe('vm script compiler test', () => {
   })
 
   it('generate assembly from sample vm scripts', () => {
-    const simpleAddVm = fs.readFileSync('test/data/SimpleAdd/SimpleAdd.vm', { encoding: 'utf8' })
-    const simpleAddAsm = fs.readFileSync('test/data/SimpleAdd/SimpleAdd.asm', { encoding: 'utf8' })
-    const simpleAddRes = vmc.compile(simpleAddVm, 'func')
-    expect(simpleAddRes).to.equal(simpleAddAsm)
+    const doTest = (testPath: string, testName: string) => {
+      const vm = fs.readFileSync(`${testPath}/${testName}/${testName}.vm`, { encoding: 'utf8' })
+      const asm = fs.readFileSync(`${testPath}/${testName}/${testName}.asm`, { encoding: 'utf8' })
+      const res = vmc.compile(vm, testName)
+      expect(res).to.equal(asm)
+    }
 
-    const stackTestVm = fs.readFileSync('test/data/StackTest/StackTest.vm', { encoding: 'utf8' })
-    const stackTestAsm = fs.readFileSync('test/data/StackTest/StackTest.asm', { encoding: 'utf8' })
-    const stackTestRes = vmc.compile(stackTestVm, 'func')
-    expect(stackTestRes).to.equal(stackTestAsm)
+    doTest('test/data', 'SimpleAdd')
+    doTest('test/data', 'StackTest')
+    doTest('test/data', 'BasicLoop')
+    doTest('test/data', 'FibonacciSeries')
   })
 })

@@ -1,7 +1,8 @@
-import { Parser, PUSH, POP, ARITHMETIC } from "./parser"
+import { Parser, PUSH, POP, ARITHMETIC, LABEL, GOTO, IF } from "./parser"
 import { ArithmeticCompiler } from "./arithmeticCompiler"
 import { PushCompiler } from "./pushCompiler"
 import { PopCompiler } from "./popCompiler"
+import { FlowCompiler } from './flowCompiler'
 
 export class VMCompiler {
   compile = (script: string, functionName: string) => {
@@ -9,6 +10,7 @@ export class VMCompiler {
     const arithmeticCompiler = new ArithmeticCompiler()
     const pushCompiler = new PushCompiler()
     const popCompiler = new PopCompiler()
+    const flowCompiler = new FlowCompiler()
 
     pushCompiler.setFunctionName(functionName)
     popCompiler.setFunctionName(functionName)
@@ -38,7 +40,19 @@ export class VMCompiler {
         case ARITHMETIC:
           asm += '\n' + arithmeticCompiler.compile(parser.arg1())          
           break
-    
+
+        case LABEL:
+          asm += '\n' + flowCompiler.compileLabel(parser.arg1())          
+          break
+   
+        case GOTO:
+          asm += '\n' + flowCompiler.compileGoto(parser.arg1())          
+          break
+
+        case IF:
+          asm += '\n' + flowCompiler.compileIf(parser.arg1())          
+          break
+
         default:
           break
       }
