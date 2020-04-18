@@ -36,5 +36,18 @@ describe('vm script compiler test', () => {
     doTest('test/data', 'StackTest')
     doTest('test/data', 'BasicLoop')
     doTest('test/data', 'FibonacciSeries')
+    doTest('test/data', 'SimpleFunction')
+
+    const doTest2 = (testPath: string, testName: string) => {
+      const vm = fs.readFileSync(`${testPath}/${testName}.vm`, { encoding: 'utf8' })
+      const asm = fs.readFileSync(`${testPath}/${testName}.asm`, { encoding: 'utf8' })
+      const res = vmc.compile(vm, testName)
+      expect(res).to.equal(asm)
+    }
+
+    doTest2('test/data/FibonacciElement', 'Main')
+    doTest2('test/data/FibonacciElement', 'Sys')
+    doTest('test/data', 'FibonacciElement')
+
   })
 })
