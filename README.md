@@ -1,6 +1,6 @@
 # VM Translator
 
-「コンピュータシステムの理論と実装」第7章より、VMコンパイラのTypeScript実装。
+「コンピュータシステムの理論と実装」第7、8章より、VMコンパイラのTypeScript実装。
 
 ## Usage
 
@@ -25,4 +25,10 @@ $ ./vmtdir test/data/StaticsTest
 ```
 $ yarn
 $ yarn run test
+```
+
+### Run CPU Emulator
+
+```
+$ bash run_cpuemulator.sh
 ```

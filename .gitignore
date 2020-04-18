@@ -4,3 +4,7 @@ dist/
 yarn-error.log
 build/
 *.bak
+*.cmp
+*.out
+*.tst
+*.html
