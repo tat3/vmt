@@ -1,0 +1,66 @@
+if [ $# -ne 1 ]; then
+  cat << EOS
+vmt: invalid number of arguments
+Usage: ./vmt [VM_DIR]
+EOS
+  exit 1
+fi
+
+VM_DIR=$1
+
+cat << EOS
+    @256
+    D=A
+    @SP
+    M=D
+    @Sys.init_RETURN_0
+    D=A
+    @SP
+    A=M
+    M=D
+    @SP
+    M=M+1
+    @LCL
+    D=M
+    @SP
+    A=M
+    M=D
+    @SP
+    M=M+1
+    @ARG
+    D=M
+    @SP
+    A=M
+    M=D
+    @SP
+    M=M+1
+    @THIS
+    D=M
+    @SP
+    A=M
+    M=D
+    @SP
+    M=M+1
+    @THAT
+    D=M
+    @SP
+    A=M
+    M=D
+    @SP
+    M=M+1
+    @SP
+    D=M
+    @LCL
+    M=D
+    @5
+    D=D-A
+    @ARG
+    M=D
+    @Sys.init
+    0;JMP
+(Sys.init_RETURN_0)
+EOS
+
+for vm in `ls $VM_DIR/*.vm`; do
+  ./vmt $vm
+done

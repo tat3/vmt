@@ -49,5 +49,10 @@ describe('vm script compiler test', () => {
     doTest2('test/data/FibonacciElement', 'Sys')
     doTest('test/data', 'FibonacciElement')
 
+    doTest2('test/data/StaticsTest', 'Class1')
+    doTest2('test/data/StaticsTest', 'Class2')
+    doTest2('test/data/StaticsTest', 'Sys')
+
+    doTest2('test/data/NestedCall', 'Sys')
   })
 })
