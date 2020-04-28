@@ -56,6 +56,6 @@
     @Main.fibonacci
     0;JMP
 (Main.fibonacci_RETURN_0)
-(WHILE)
-    @WHILE
+(Sys$WHILE)
+    @Sys$WHILE
     0;JMP

@@ -16,6 +16,7 @@ export class VMCompiler {
 
     pushCompiler.setFunctionName(functionName)
     popCompiler.setFunctionName(functionName)
+    flowCompiler.setFunctionName(functionName)
 
     let asm = `    @256
     D=A

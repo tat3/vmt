@@ -24,7 +24,7 @@
     D=A
     @LCL
     M=M-D
-(LOOP_START)
+(BasicLoop$LOOP_START)
     @0
     D=A
     @ARG
@@ -118,7 +118,7 @@
     M=M-1
     A=M
     D=M
-    @LOOP_START
+    @BasicLoop$LOOP_START
     D;JNE
     @0
     D=A

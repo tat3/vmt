@@ -102,8 +102,8 @@
     @Main.fibonacci
     0;JMP
 (Main.fibonacci_RETURN_1)
-(WHILE)
-    @WHILE
+(FibonacciElement$WHILE)
+    @FibonacciElement$WHILE
     0;JMP
 (Main.fibonacci)
     @0
@@ -147,11 +147,11 @@
     M=M-1
     A=M
     D=M
-    @IF_TRUE
+    @FibonacciElement$IF_TRUE
     D;JNE
-    @IF_FALSE
+    @FibonacciElement$IF_FALSE
     0;JMP
-(IF_TRUE)
+(FibonacciElement$IF_TRUE)
     @0
     D=A
     @ARG
@@ -207,7 +207,7 @@
     @R14
     A=M
     0;JMP
-(IF_FALSE)
+(FibonacciElement$IF_FALSE)
     @0
     D=A
     @ARG

@@ -44,11 +44,11 @@
     M=M-1
     A=M
     D=M
-    @IF_TRUE
+    @Main$IF_TRUE
     D;JNE
-    @IF_FALSE
+    @Main$IF_FALSE
     0;JMP
-(IF_TRUE)
+(Main$IF_TRUE)
     @0
     D=A
     @ARG
@@ -104,7 +104,7 @@
     @R14
     A=M
     0;JMP
-(IF_FALSE)
+(Main$IF_FALSE)
     @0
     D=A
     @ARG

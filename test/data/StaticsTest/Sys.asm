@@ -227,6 +227,6 @@
     @Class2.get
     0;JMP
 (Class2.get_RETURN_3)
-(WHILE)
-    @WHILE
+(Sys$WHILE)
+    @Sys$WHILE
     0;JMP

@@ -100,7 +100,7 @@
     D=A
     @ARG
     M=M-D
-(MAIN_LOOP_START)
+(FibonacciSeries$MAIN_LOOP_START)
     @0
     D=A
     @ARG
@@ -115,11 +115,11 @@
     M=M-1
     A=M
     D=M
-    @COMPUTE_ELEMENT
+    @FibonacciSeries$COMPUTE_ELEMENT
     D;JNE
-    @END_PROGRAM
+    @FibonacciSeries$END_PROGRAM
     0;JMP
-(COMPUTE_ELEMENT)
+(FibonacciSeries$COMPUTE_ELEMENT)
     @0
     D=A
     @THAT
@@ -225,6 +225,6 @@
     D=A
     @ARG
     M=M-D
-    @MAIN_LOOP_START
+    @FibonacciSeries$MAIN_LOOP_START
     0;JMP
-(END_PROGRAM)
+(FibonacciSeries$END_PROGRAM)
